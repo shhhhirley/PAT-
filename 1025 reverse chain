@@ -1,0 +1,100 @@
+#include<iostream>
+#include"string.h"
+#include<vector>
+#include<map>
+
+using namespace std;
+
+struct node
+{
+    int address;
+    int data;
+    int next;
+    
+};
+
+vector<node>vec;
+
+
+void find(int begin,node start[],int n)
+{
+    while(begin!=-1)
+    {
+        vec.push_back(start[begin]);
+        begin=start[begin].next;
+    }
+    
+   /* while(temp!=-1)while套for循环 也超时＝＝ 写一个structure 这样就可以省一个for循环
+    {
+        for(int i=0;i<n;i++)
+        if(temp==address[i])
+        {
+            vec.push_back(temp);
+            temp=next[i];
+            break;
+        }
+
+    }
+    
+    if(temp==-1) 递归超时！！！
+        return temp;
+    else
+    for(int i=0;i<n;i++)
+        if(temp==address[i])
+        {
+            vec.push_back(temp);
+            return find(next[i],address,next,n);
+        }
+    
+    return 0;
+    */
+}
+int main()
+{
+    
+    map<int,int> m;
+    int n,k,phase,newsize;
+    int begin;
+    cin>>begin>>n>>k;
+    
+   // cout<<phase;
+    node newv[n];
+    node temp[n];
+    node start[100000];
+  //  int address[n];
+  //  int data[n];
+  //  int next[n];
+    if(begin==-1)
+        printf("-1\n");
+    else{
+        
+    
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d %d %d",&temp[i].address,&temp[i].data,&temp[i].next);
+        //cin>>address[i]>>data[i]>>next[i];
+        //node[i].address=data[i];
+        start[temp[i].address]=temp[i];
+
+    }
+    find(begin,start,n);
+        newsize = vec.size();
+  //  cout<<vec.size();
+  //  for(int i=0;i<vec.size();i++)
+  //      printf("%05d\n",vec[i]);
+        phase=newsize/k;
+
+    for(int i=0;i<phase;i++)
+        for(int j=0;j<k;j++)
+            newv[i*k+j]=vec[i*k+k-1-j];
+    for(int i=phase*k;i<newsize;i++)
+        newv[i]=vec[i];
+    for(int i=0;i<newsize-1;i++)
+        printf("%05d %d %05d\n",newv[i].address,newv[i].data,newv[i+1].address);
+ 
+    printf("%05d %d -1",newv[newsize-1].address,newv[newsize-1].data);
+    
+
+   }
+    
+}
