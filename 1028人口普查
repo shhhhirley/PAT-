@@ -1,0 +1,110 @@
+#include<iostream>
+#include"string.h"
+#include<algorithm>
+using namespace std;
+
+struct node
+{
+    string name;
+    int year;
+    int month;
+    int day;
+    
+};
+int comp(node a,node b)
+{
+    if(a.year>b.year)
+        return 0;
+    else if(a.year==b.year)
+    {if(a.month>b.month)
+        return 0;
+        else if(a.month==b.month)
+        {
+            if(a.day>b.day)
+                return 0;
+            else return 1;
+            
+        }
+        else return 1;
+    }
+    else return 1;
+    
+}
+int main()
+{
+    int k;
+    int valid=0;
+    cin>>k;
+    node people[100000];
+    node newp[100000];
+    for(int i=0;i<k;i++)
+    {
+        
+        cin>>people[i].name;
+        scanf("%d/%d/%d",&people[i].year,&people[i].month,&people[i].day);
+    if(people[i].year>1814)
+   {
+       if(people[i].year<2014)
+       {
+           newp[valid]=people[i];
+           // cout<<people[i].name<<endl;
+           valid++;
+       }
+       else if(people[i].year==2014)
+       {
+           
+           if(people[i].month<9)
+           {
+               newp[valid]=people[i];
+               // cout<<people[i].name<<endl;
+               valid++;
+           }
+           
+           else if(people[i].month==9)
+           {
+               
+               if(people[i].day<=6)
+               {
+                   newp[valid]=people[i];
+                   //     cout<<people[i].name<<endl;
+                   valid++;
+               }
+           }        }
+       
+
+       
+                 }
+      
+   
+    else if(people[i].year==1814)
+        {
+
+
+            if(people[i].month>9)
+            {
+                newp[valid]=people[i];
+               // cout<<people[i].name<<endl;
+                valid++;
+            }
+            
+            else if(people[i].month==9)
+            {
+                
+                if(people[i].day>=6)
+                {
+                    newp[valid]=people[i];
+                //     cout<<people[i].name<<endl;
+                    valid++;
+                }
+            }        }
+    
+    }
+    sort(newp,newp+valid,comp);
+    if(valid==0)
+        cout<<0;
+    else
+    cout<<valid<<" "<<newp[0].name<<" "<<newp[valid-1].name;
+    
+   
+
+}
