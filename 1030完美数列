@@ -8,7 +8,8 @@ using namespace std;
 int main()
 {
    
-    int n,p;
+    int n;
+    float p;//int不够用
     cin>>n>>p;
     int num[n];
     int max=0;
