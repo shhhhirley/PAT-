@@ -1,0 +1,61 @@
+#include<iostream>
+#include<map>
+using namespace std;
+
+int main()
+{
+    int n,k=0;
+    int mol;
+    string input;
+    int num[18],sum=0;
+    char code[11]={'1','0','X','9','8','7','6','5','4','3','2'};
+    map<int,char> m;
+    for(int i=0;i<11;i++)
+    {
+        m[i]=code[i];
+    }
+    int weight[17]={7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
+    cin>>n;
+    for(int j=0;j<n;j++)
+    {
+        cin>>input;
+        for(int i=0;i<17;i++)
+        {
+            
+            num[i]=input[i]-'0';
+            if(num[i]>9||num[i]<0)
+            {
+                 sum=-1;
+                 break;
+            }
+            else
+            sum+=num[i]*weight[i];
+            
+        }
+       // cout<<input[17]<<endl;
+        
+       
+
+    
+        mol=sum-11*(sum/11);
+        //cout<<mol<<" "<<m[mol]<<endl;
+            if(input[17]!=m[mol])
+            {
+                cout<<input<<endl;
+                k++;
+            }
+        input.clear();
+        sum=0;
+
+    }
+    
+    
+    if(k==0)
+        cout<<"All passed";
+    
+    
+    
+    
+
+    
+}
