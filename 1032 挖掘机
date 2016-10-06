@@ -1,0 +1,39 @@
+#include<iostream>
+#include<algorithm>
+#include<map>
+using namespace std;
+
+int main()
+{
+    int n;
+    
+    cin>>n;
+   
+    int score[n],m[n],temp[n];
+    int school[n];
+    for(int i=0;i<n;i++)
+    {
+        m[i]=0;
+        cin>>school[i]>>score[i];
+        
+    }
+    if(n==1)
+        cout<<school[0]<<" "<<score[0];
+    else{
+        for(int i=0;i<n;i++)
+            m[school[i]]+=score[i];
+        
+        for(int i=0;i<n;i++)
+            temp[i]=m[i];
+        sort(m,m+n);
+        for(int i=0;i<n;i++)
+            if(temp[i]==m[n-1])
+                cout<<i<<" "<<m[n-1];
+        
+
+    }
+    
+    
+    
+    
+}
