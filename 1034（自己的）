@@ -1,0 +1,116 @@
+#include<iostream>
+#include"math.h"
+using namespace std;
+int a=5,b=3,c=0,d=6;
+
+int gcd(int a,int b)
+{
+ if(a<0)
+ {
+     a=-a;
+     if(a<b)
+     {
+         int temp=a;
+         a=b;
+         b=temp;
+     }
+     
+     int c=a%b;
+     if(c==0)
+         return b;
+     else
+         
+         return -gcd(b,c);
+ }
+    if(a<b)
+    {
+        int temp=a;
+        a=b;
+        b=temp;
+    }
+    
+    int c=a%b;
+    if(c==0)
+        return b;
+    else
+    
+    return gcd(b,c);
+}
+void convert(int &a,int &b,int &c,int &d)
+{
+   int k=gcd(b,d);
+   if(k==1)
+   {
+       a=a*d;
+       c=c*b;
+       b=d=b*d;
+       
+   }
+    else
+    {
+        int m=b/k;
+        int n=d/k;
+        b=d=m*d;
+        a=a*n;
+        c=c*m;
+        
+    }
+    
+}
+void simplify(int &a,int &b)
+{
+    int c=gcd(a,b);
+    if(c<0)
+    {
+        a=-a/c;
+        b=-b/c;
+        
+    }
+    else{
+        a=a/c;
+        b=b/c;
+
+    }
+    
+    
+    
+    
+    }
+
+int main()
+{
+    convert(a,b,c,d);
+    int key[2]={a+c,a-c};
+    char sign[2]={'+','-'};
+    int e=pow(b,2);
+    int temp=b;
+    for(int i=0;i<2;i++)
+    {
+        
+        simplify(key[i], temp);
+        if(key[i]/temp<=-1)
+            {
+                int reminder=-key[i]%temp;
+                cout<<"("<<key[i]/temp<<" "<<reminder<<"/"<<temp<<")"<<endl;
+            }
+        else if(key[i]/temp>=1)
+        {
+            int reminder=key[i]%temp;
+            cout<<key[i]/temp<<" "<<reminder<<"/"<<temp<<endl;
+        }
+        else cout<<key[i]<<"/"<<temp<<endl;
+        temp=b;
+        
+        }
+       
+    
+  
+   
+    
+        //cout<<a<<b<<c<<d;
+
+    
+    
+}
+
+
