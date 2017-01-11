@@ -1,0 +1,34 @@
+#include"stdio.h"
+#include"string.h"
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    char str[100010];
+    gets(str);
+    int k = strlen(str)-1;
+    int numt=0,numa=0,nump=0;
+    while(k>=0)
+    {
+        if(str[k]=='P')
+        {
+            nump+=numa;
+            if(nump>1000000007)
+                nump%=1000000007;
+        }
+        else if(str[k]=='A')
+        {
+            numa+=numt;
+        }
+        else
+        {
+            numt++;
+           
+                
+        }
+        k--;
+    }
+    printf("%d",nump);
+    
+}
